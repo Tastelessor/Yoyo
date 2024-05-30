@@ -1,3 +1,48 @@
+# cache
+**/__pycache__
+
+# data files
+*.csv
+*.dat
+*.db
+*.dbf
+*.log
+*.mdb
+*.sql
+*.xml
+*.ini
+*.conf
+*.yaml
+*.yml
+*.properties
+*.txt
+*.csv
+*.dat
+*.db
+*.dbf
+*.log
+*.mdb
+*.sql
+*.xml
+*.json
+*.ini
+*.conf
+*.yaml
+*.yml
+*.properties
+*.txt
+*.csv
+*.dat
+*.db
+*.dbf
+*.log
+*.mdb
+*.sql
+*.xml
+*.json
+*.svg
+*.png
+
 # Prerequisites
 *.d
 
