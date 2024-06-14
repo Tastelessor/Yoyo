@@ -1,0 +1,38 @@
+{
+    "manager": {
+    },
+    "back_test":{
+        "initial_capital": 1000000,
+        "tax_rate": 0.0015,
+        "commission": 0,
+        "full_period": false,
+        "period": 100,
+        "start_date": "2019-01-01",
+        "end_date": "2020-01-01",
+        "trade_unit": [100, 1000],
+        "test_combinations": [
+            {
+                "stock_code": [
+                    "HK.02015",
+                    "HK.09866",
+                    "HK.09868"
+                ],
+                "strategy": [
+                    "StrategyTurtle"
+                ]
+            }
+        ],
+        "use_strategy_cfg": true,
+        "strategy_params": {
+            "param_stride": 0.1,
+            "StrategyTurtle": {
+                "change_rate":{
+                    "buy_above": [4.0, 5.0],
+                    "buy_below": [0.0, 0.0],
+                    "sell_above": [5.0, 6.0],
+                    "sell_below": [-5.0, -4.0]
+                }
+            }
+        }
+    }
+}

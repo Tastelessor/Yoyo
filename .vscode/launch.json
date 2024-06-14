@@ -1,0 +1,29 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Yoyo Python Debugger: Current File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/src",
+            "env": {
+                "VIRTUAL_ENV": "${workspaceFolder}/yoyo-env",
+                "PYTHONPATH": "${workspaceFolder}/src:${workspaceFolder}"
+            },
+            "preLaunchTask": "active_env"
+        }
+    ],
+    "tasks": [
+        {
+            "label": "active_env",
+            "type": "shell",
+            "command": "source ${workspaceFolder}/yoyo-env/bin/activate",
+            "problemMatcher": []
+        }
+    ]
+}

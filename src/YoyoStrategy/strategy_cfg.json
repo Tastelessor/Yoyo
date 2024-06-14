@@ -1,0 +1,10 @@
+{
+    "StrategyTurtle": {
+        "change_rate":{
+            "buy_above": 5.0,
+            "buy_below": 0.0,
+            "sell_above": 0.0,
+            "sell_below": 5.0
+        }
+    }
+}
