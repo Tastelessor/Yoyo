@@ -70,11 +70,13 @@ def after_a_day(trade_cfg: dict, day_record: pd.Series) -> tuple[int, float]:
 def find_the_best_sell_buy(stock_code: str, sell_threshold: list[float], buy_threshold: list[float]) -> list[dict]:
     data = _get_data_frame(stock_code)
     results = []
-    for sell_rate in range(sell_threshold[0], sell_threshold[1], 1):
-        for buy_rate in range(buy_threshold[0], buy_threshold[1], 1):
-            for trade_unit in range(5000, 50001, 5000):
+    for sell_rate in np.arange(sell_threshold[0], sell_threshold[1], 0.1):
+        sell_rate = round(sell_rate, 3)
+        for buy_rate in np.arange(buy_threshold[0], buy_threshold[1], 0.1):
+            buy_rate = round(buy_rate, 3)
+            for trade_unit in range(10000, 200001, 5000):
                 trade_cfg = {
-                    'whole_money': 100000,
+                    'whole_money': 200000,
                     'trade_unit': trade_unit,
                     'sell_threshold': sell_rate,
                     'buy_threshold': buy_rate,
@@ -110,20 +112,27 @@ def find_the_best_sell_buy(stock_code: str, sell_threshold: list[float], buy_thr
     return results
 
 # results = find_the_best_sell_buy('HK.09866', [-10, 10], [-10, 10])
-stock_code = 'HK.02015'
-results = find_the_best_sell_buy(stock_code, [0, 1], [5, 6])
+stock_code = 'HK.09868'
+results = find_the_best_sell_buy(stock_code, [-1, 1], [4, 5])
 best = results[-1]
 buy_records = best.pop('buy_records')
 sell_records = best.pop('sell_records')
 asset_records = best.pop('asset_records')
 fig = draw_k_line(stock_code, buy_records, sell_records)
 draw_asset_line(fig, asset_records)
+
 df = pd.DataFrame(buy_records)
 df.to_csv(f"buy_buy_{best['buy_threshold']}_{best['sell_threshold']}.csv", index=False)
 df = pd.DataFrame(sell_records)
 df.to_csv(f"sell_buy_{best['buy_threshold']}_{best['sell_threshold']}.csv", index=False)
+
 print(best)
 print(f"I won ${best['whole_money'] / 10000.0}w, and I hold {best['shares_amount']} stocks")
-show_plot()
+# for item in results:
+#     if item.get('buy_records') is not None:
+#         item.pop('buy_records')
+#         item.pop('sell_records')
+#         item.pop('asset_records')
 # df = pd.DataFrame(results)
-# df.to_csv('results.csv', index=False)
+# df.to_csv(f"result_{stock_code}.csv", index=False)
+show_plot()
