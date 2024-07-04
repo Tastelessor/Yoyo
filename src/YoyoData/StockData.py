@@ -30,10 +30,11 @@ class StockData(Data):
     
     def ohclv_to_datetime(self, ohclv: pd.DataFrame) -> None:
         ohclv['time_key'] = pd.to_datetime(ohclv['time_key'])
-        ohclv['date'] = ohclv['time_key'].dt.strftime('%Y-%m-%d')
+        ohclv.rename(columns={'time_key': 'date'}, inplace=True)
+        ohclv.set_index('date', inplace=True)
 
     def export_to_csv(self, data: pd.DataFrame, stock_code: str) -> None:
-        data.to_csv(Data.get_filename_by_code(stock_code), index=False, index_label='date')
+        data.to_csv(Data.get_filename_by_code(stock_code), index=True)
 
     def init_history_k(self, stock_code: str, start_date: str, end_date: str) -> None:
         data = self.pull_history_k(stock_code, start_date, end_date)
@@ -67,9 +68,10 @@ class StockData(Data):
             if not os.path.exists(output_csv):
                 logger.error(f"No such file: {output_csv}, please init before update")
                 continue
-            res[stock_code] = pd.read_csv(output_csv)
+            res[stock_code] = pd.read_csv(output_csv, index_col='date', parse_dates=True)
         return res
 
 # sd = StockData()
-# sd.init_history_k('HK.09866', '2022-03-14', '2024-06-13')
-# sd.init_history_k('HK.02015', '2021-08-12', '2024-06-13')
+# sd.init_history_k('HK.09866', '2022-03-14', '2024-06-18')
+# sd.init_history_k('HK.09868', '2021-07-07', '2024-06-18')
+# sd.init_history_k('HK.02015', '2021-08-12', '2024-06-18')

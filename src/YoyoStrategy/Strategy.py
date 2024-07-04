@@ -40,6 +40,7 @@ class Strategy(ABC):
 
     def load_config(self, class_name=None, cfg='{CWD}/strategy_cfg.json'):
         if type(cfg) is str:
+            logger.info(f'Loading strategy config from {cfg}')
             with open(cfg, 'r') as f:
                 obj = json.load(f)
                 if class_name is not None and class_name in obj:
@@ -47,6 +48,7 @@ class Strategy(ABC):
                 else:
                     self.cfg = obj
         elif type(cfg) is dict:
+            logger.info(f'Loading strategy config from dict')
             self.cfg = cfg
         
     def process_factors(self, func_list: List[FuncType], args_list: List[list[Any]]) -> TradeAction:

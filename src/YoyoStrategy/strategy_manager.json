@@ -2,14 +2,15 @@
     "manager": {
     },
     "back_test":{
-        "initial_capital": 1000000,
-        "tax_rate": 0.0015,
+        "initial_capital": 100000,
+        "tax": 0.0015,
         "commission": 0,
         "full_period": false,
-        "period": 100,
-        "start_date": "2019-01-01",
-        "end_date": "2020-01-01",
-        "trade_unit": [100, 1000],
+        "period": 0,
+        "start_date": "2022-03-14",
+        "end_date": "2024-06-18",
+        "trade_unit": [1000, 10000, 1000],
+        "min_trade_unit": 100,
         "test_combinations": [
             {
                 "stock_code": [
@@ -24,13 +25,11 @@
         ],
         "use_strategy_cfg": true,
         "strategy_params": {
-            "param_stride": 0.1,
+            "param_stride": 1,
             "StrategyTurtle": {
                 "change_rate":{
-                    "buy_above": [4.0, 5.0],
-                    "buy_below": [0.0, 0.0],
-                    "sell_above": [5.0, 6.0],
-                    "sell_below": [-5.0, -4.0]
+                    "buy_above": [-10, 10],
+                    "sell_below": [-10, 10]
                 }
             }
         }

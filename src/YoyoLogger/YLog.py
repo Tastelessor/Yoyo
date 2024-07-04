@@ -9,7 +9,7 @@ logger.setLevel(logging.DEBUG)
 
 # Create a ColoredFormatter
 formatter = ColoredFormatter(
-    "%(log_color)s[%(asctime)s%(reset)s - %(log_color)s%(levelname)s]%(reset)s %(blue)s%(filename)s:%(lineno)d - %(message)s",
+    "%(log_color)s[%(asctime)s%(reset)s - %(log_color)s%(levelname)s]%(reset)s %(blue)s%(filename)s:%(funcName)s:%(lineno)d - %(message)s",
     datefmt='%Y-%m-%d %H:%M:%S',
     log_colors={
         'DEBUG':    'cyan',
